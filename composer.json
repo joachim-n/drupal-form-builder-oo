@@ -1,0 +1,13 @@
+{
+    "name": "joachim/chained-array-access",
+    "type": "project",
+    "require": {
+        "symfony/var-dumper": "^5.0"
+    },
+    "authors": [
+        {
+            "name": "Joachim Noreiko",
+            "email": "joachim@107701.no-reply.drupal.org"
+        }
+    ]
+}
