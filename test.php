@@ -19,6 +19,9 @@ class FormElement implements ArrayAccess {
   public static function createFromArray(array $element_array): self {
     $form_element = new static;
 
+    foreach ($element_array as $key => $value) {
+      $form_element[$key] = $value;
+    }
 
     return $form_element;
   }
