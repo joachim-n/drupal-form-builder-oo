@@ -23,15 +23,15 @@ class FormElement implements ArrayAccess {
     return $form_element;
   }
 
-  public function offsetExists ($offset) {
+  public function offsetExists($offset) {
     return array_key_exists($offset, $this->_data);
   }
 
-  public function offsetGet ($offset) {
+  public function offsetGet($offset) {
     return $this->_data[$offset];
   }
 
-  public function offsetSet ($offset, $value) {
+  public function offsetSet($offset, $value) {
     if (is_array($value)) {
       if (isset($value['#type'])) {
         $value = static::createFromArray($value);
@@ -41,7 +41,7 @@ class FormElement implements ArrayAccess {
     $this->_data[$offset] = $value;
   }
 
-  public function offsetUnset ($offset) {
+  public function offsetUnset($offset) {
     unset($this->_data[$offset]);
   }
 
