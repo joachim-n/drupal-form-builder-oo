@@ -61,20 +61,20 @@ dump($form);
 $form = new FormElement();
 
 $form['one'] = [
-  '#type' => 'foo',
+  '#type' => 'details',
 ];
 $form['one']['two'] = [
-  '#type' => 'bar',
+  '#type' => 'textfield',
 ];
 dump($form);
 
 // BC handling for form builders that initialise the form as an array.
 $form = [];
 $form['one'] = [
-  '#type' => 'foo',
+  '#type' => 'details',
 ];
 $form['one']['two'] = [
-  '#type' => 'bar',
+  '#type' => 'textfield',
 ];
 
 $form = FormElement::createFromArray($form);
