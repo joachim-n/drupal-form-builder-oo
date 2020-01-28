@@ -8,22 +8,15 @@ class FormElement implements ArrayAccess {
   protected $_data = [];
 
   /**
-   * Create a FormElement from a form element array.
+   * Create a new FormElement, optionally from a form element array.
    *
    * @param array $element_array
    *   The form element array
-   *
-   * @return self
-   *   The form element object.
    */
-  public static function createFromArray(array $element_array): self {
-    $form_element = new static;
-
+  public function __construct(?array $element_array = []) {
     foreach ($element_array as $key => $value) {
-      $form_element[$key] = $value;
+      $this[$key] = $value;
     }
-
-    return $form_element;
   }
 
   public function offsetExists($offset) {
@@ -37,7 +30,7 @@ class FormElement implements ArrayAccess {
   public function offsetSet($offset, $value) {
     if (is_array($value)) {
       if (isset($value['#type'])) {
-        $value = static::createFromArray($value);
+        $value = new static($value);
       }
     }
 
@@ -52,8 +45,12 @@ class FormElement implements ArrayAccess {
 
 // New OO style.
 $form = new FormElement();
-$form['one'] = new FormElement();
-$form['one']['two'] = new FormElement();
+$form['one'] = new FormElement([
+  '#type' => 'details',
+]);
+$form['one']['two'] = new FormElement([
+  '#type' => 'textfield',
+]);
 
 dump($form);
 
@@ -77,7 +74,7 @@ $form['one']['two'] = [
   '#type' => 'textfield',
 ];
 
-$form = FormElement::createFromArray($form);
+$form = new FormElement($form);
 dump($form);
 
 
