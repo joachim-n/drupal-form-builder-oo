@@ -43,7 +43,7 @@ class FormElement implements ArrayAccess {
 
 }
 
-// New OO style.
+// 1. New OO style.
 $form = new FormElement();
 $form['one'] = new FormElement([
   '#type' => 'details',
@@ -54,8 +54,10 @@ $form['one']['two'] = new FormElement([
 
 dump($form);
 
-// BC procedural style
+// 2. Backwards-compatible array style.
 $form = new FormElement();
+
+// Pass the $form into an old-style form constructor...
 
 $form['one'] = [
   '#type' => 'details',
@@ -63,9 +65,11 @@ $form['one'] = [
 $form['one']['two'] = [
   '#type' => 'textfield',
 ];
+
 dump($form);
 
-// BC handling for form builders that initialise the form as an array.
+// 2. Backwards-compatible handling for form classes whose builders initialise
+//    the form as an array.
 $form = [];
 $form['one'] = [
   '#type' => 'details',
@@ -74,7 +78,10 @@ $form['one']['two'] = [
   '#type' => 'textfield',
 ];
 
+// The form system now converts the array into a FormElement.
+
 $form = new FormElement($form);
+
 dump($form);
 
 
