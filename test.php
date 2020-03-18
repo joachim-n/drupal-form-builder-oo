@@ -2,6 +2,16 @@
 
 include 'vendor/autoload.php';
 
+/**
+ * This is a simple proof-of-concept of how object-based FormAPI form elements
+ * could work.
+ *
+ * The FormElement class replaces the top-level $form array as well as all
+ * form elements within it.
+ *
+ * It uses ArrayAccess to ensure backwards-compatibility with code that uses
+ * the form as an array.
+ */
 class FormElement implements ArrayAccess {
 
   // The form element data. TODO: replace with specific properties!
